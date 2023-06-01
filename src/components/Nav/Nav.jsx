@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 // import SearchBar from "./SearchBar"; 
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const Container = styled.div`
   border:1px solid rgba(174, 214, 241, 0.8)

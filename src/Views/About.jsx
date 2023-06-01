@@ -7,9 +7,9 @@ font-family: roboto:
 
 `
 
-const Tipografia = styled.p`
-font-family: roboto:
-`
+// const Tipografia = styled.p`
+// font-family: roboto:
+// `
 
 
 const About = () => {
