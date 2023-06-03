@@ -13,7 +13,7 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 const Container = styled.div`
   align-items: center;
   width: 100%;
-  max-width: 300px;
+  // max-width: 300px;
   text-align: center;
   position: relative;
 

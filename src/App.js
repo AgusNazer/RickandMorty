@@ -6,6 +6,8 @@ import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import About from './Views/About';
 import Detail from './Views/Detail';
+import { useLocation } from 'react-router-dom';
+import Form from './components/Form/Form';
 
 function App() {
 
@@ -31,17 +33,26 @@ const URL_BASE = "https://rickandmortyapi.com/api/";
    const parsedID = parseInt(id);
    const updatedCharacters = characters.filter((character) => character.id !== parsedID);
    setCharacters(updatedCharacters);
+
+
+ 
+
  };
+
+ // Obtén la ubicación actual
+ const {pathname} = useLocation();
 
    return (
       <div className='App'>
+         
          {/* {location.pathname !== '/about' %% <Nac /> renderizo condicional, si estoy parado no se renderiza */}
-         <Nav onSearch={searchCharacter} />
+       {pathname !== "/" &&  <Nav onSearch={searchCharacter} />}
+       {/* <Nav onSearch={searchCharacter} /> */}
          <Routes>
-
+        <Route path="/"element={<Form />} /> 
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/detail/:detailId" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
 
          </Routes>
       </div>
