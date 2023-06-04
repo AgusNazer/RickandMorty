@@ -8,12 +8,9 @@ const FondoCards = styled.div`
     grid-template-columns: repeat(5, 1fr);
     gap:10px;
     margin:5px;
-    // background-image: url("./assets/rick-y-morty-en-el-espacio.webp");
-    // background-size: cover;
-    // background-repeat: no-repeat;
     height: 100vh; 
     width: 100%;
-    // border:2px solid blue;
+
 
     @media (max-width: 710px) {
       grid-template-columns: 1fr;
