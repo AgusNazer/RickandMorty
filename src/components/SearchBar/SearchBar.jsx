@@ -21,6 +21,7 @@ export default function SearchBar({onSearch}) {
          <Titulo>Rick and Morty</Titulo>
          <Input type='search' placeholder="   Enter a number " />
          <Button onClick={ (id) => {onSearch(id)} }>Agregar</Button>
+         
       </Container>
    );
 }

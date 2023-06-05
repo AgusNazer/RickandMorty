@@ -1,5 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+import validation from "./validation";
 
 const StyledFormContainer = styled.div`
 margin-top:5rem;
@@ -7,7 +8,7 @@ margin-top:5rem;
 `
 
 const StyledForm = styled.form`
-  width: 40%;
+  width: 30%;
   height: 30rem;
   display: flex;
   flex-direction: column;
@@ -27,16 +28,33 @@ const StyledForm = styled.form`
     padding: 10px;
   }
 `;
+// key frames
+const moveAnimation = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
 
 const Titulo = styled.h1`
   font-size: 2.2rem;
+  // aca el gtlich 
   color: #97ce4c;
   font-family: "Rick and Morty", sans-serif;
+
+  animation: ${moveAnimation} 2s infinite;
+  animation-direction: reverse;
 `;
 
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
+  align-items:center;
   margin-bottom: 10px;
   width: 18rem;
 
@@ -53,10 +71,15 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
+width: 12em;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+ 
+  @media (max-width: 480px) {
+    width: 10em;
+  }
 `;
 
 const Button = styled.button`
@@ -72,18 +95,8 @@ const Button = styled.button`
   }
 `;
 
-const validate = (userData, setErrors, errors) => {
-  if ( !userData.email) setErrors({...errors, email: "Email no puede estar vacío"});
-  else{
-       if (/^\w+([.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userData.email)) 
-  setErrors({...errors, email:""})
-  else setErrors({...errors, email:"Email inválido."})
-  
 
-};
-};
-
-const Form = () => {
+const Form = ({ login }) => {
 
  const [userData, setUserData] = useState({
   email:"",
@@ -94,7 +107,7 @@ const Form = () => {
 
 
   const [errors, setErrors] = useState({
-  email: [],
+  email: "",
   password: ""
 });
 
@@ -103,13 +116,15 @@ const handleChange = (event) => {
   const value = event.target.value;
 
   setUserData({ ...userData, [property]: value});
-  validate ({...userData, [property]: value}, setErrors, errors);
+  // validate ({...userData, [property]: value}, setErrors, errors);
+  validation( { ...userData, [property]: value}, errors, setErrors );
 };
 
-const submitHandler = (e) =>{
-  e.preventDefault();
+const submitHandler = (event) =>{
+  event.preventDefault();
+  login(userData);
 
-  alert("Login exitoso")
+  // alert("Login exitoso")
 }
     return(
      <>
@@ -119,12 +134,16 @@ const submitHandler = (e) =>{
       <FormGroup>   
       <Titulo className="tituloTipografia">Welcome to Rick and Morty App</Titulo>
         <Label htmlFor="email">Email:</Label>
-        <Input onChange={handleChange} type="text" name="email" placeholder="Email" />
-      </FormGroup>
+        <Input onChange={handleChange} type="text" name="email" placeholder="Email"  value={userData.email}/>
+        {/* <span>Ingrese un Email válido</span> */}
+        <p>{errors.email}</p>
+      </FormGroup> 
 
       <FormGroup>
         <Label htmlFor="password">Password:</Label>
-        <Input type="email" name="email" placeholder="Password" />
+        <Input onChange={handleChange} type="password" name="password" placeholder="Password"  value={userData.password}/>
+        {/* <span>Ingrese una Password válida</span> */}
+        <p>{errors.password}</p>
       </FormGroup>
         {/* <label for="message">Mensaje:</label>
         <textarea id="message" name="message" required></textarea> */}

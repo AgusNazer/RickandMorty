@@ -67,6 +67,7 @@ export default function Nav({ onSearch }) {
       <NavLink to="/home">
         <Button>Home</Button>
       </NavLink>
+      
 
     </Container>
   );

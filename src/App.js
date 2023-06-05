@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav';
-import { Routes } from 'react-router-dom';
+import { Routes, useNavigate } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import About from './Views/About';
 import Detail from './Views/Detail';
@@ -10,8 +10,19 @@ import { useLocation } from 'react-router-dom';
 import Form from './components/Form/Form';
 
 function App() {
+  
+  const [characters, setCharacters] = useState ([]);
+  const {pathname} = useLocation();
+  const [access, setAccess] = useState(false);
+  const navigate = useNavigate();
 
-   const [characters, setCharacters] = useState ([]);
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
+
+// CREDENCIALES LOGIN(FAKE)
+const email = "agustin.nazer@hotmail.com"
+const password = "Agus123"
 
    const searchCharacter = (characterID) => {
 const URL_BASE = "https://rickandmortyapi.com/api/";
@@ -38,38 +49,39 @@ const URL_BASE = "https://rickandmortyapi.com/api/";
  
 
  };
+// agregar esta fiuncionalidad
+//  const characterRandom = () => {
+//   const randomID = Math.floor(Math.random() * 826) + 1;
+//   searchCharacter(randomID);
+// };
 
  // Obtén la ubicación actual
- const {pathname} = useLocation();
 
+const login =(userData)=>{
+  if(userData.email === email && userData.password === password){
+    setAccess(true);
+    navigate("/home");
+  }else{
+    alert("Credenciales incorrectas")
+  }
+}
    return (
-      <div className='App'>
+      <div className= "App">
+        
          
          {/* {location.pathname !== '/about' %% <Nac /> renderizo condicional, si estoy parado no se renderiza */}
        {pathname !== "/" &&  <Nav onSearch={searchCharacter} />}
        {/* <Nav onSearch={searchCharacter} /> */}
          <Routes>
-        <Route path="/"element={<Form />} /> 
+        <Route path="/"element={<Form login={login} />} /> 
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
-
-         </Routes>
+       </Routes>
+        {/* agregar el button random  */}
+       {/* <button onClick={characterRandom}>Argrear random</button>  */}
       </div>
    );
 }
 
 export default App;
-
-
-// {/* <Nav onSearch={(characterID) => window.alert(characterID)} /> */}
-//          {/* <Card
-//             id={Rick.id}
-//             name={Rick.name}
-//             status={Rick.status}
-//             species={Rick.species}
-//             gender={Rick.gender}
-//             origin={Rick.origin.name}
-//             image={Rick.image}
-//             onClose={() => window.alert('Emulamos que se cierra la card')}
-//          /> */}

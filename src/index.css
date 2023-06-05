@@ -8,8 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url(../public/assets/fondoApp.jpeg);
   size: cover;
-  background-attachment: fixed;
-  overflow: hidden;
+  /* background-attachment: fixed;
+  overflow: hidden; */
 }
 
 code {
