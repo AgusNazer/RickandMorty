@@ -8,6 +8,7 @@ import About from './Views/About';
 import Detail from './Views/Detail';
 import { useLocation } from 'react-router-dom';
 import Form from './components/Form/Form';
+import Favorites from './components/favorites/Favorites';
 
 function App() {
   
@@ -77,6 +78,7 @@ const login =(userData)=>{
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
        </Routes>
         {/* agregar el button random  */}
        {/* <button onClick={characterRandom}>Argrear random</button>  */}
