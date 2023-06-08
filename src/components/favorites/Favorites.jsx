@@ -1,12 +1,21 @@
 import { useSelector } from "react-redux";
-import Card from "../Card/Card";
-// import styled from "styled-components";
+import Card, { CardContainer,Container,} from "../Card/Card";
 import { useDispatch } from "react-redux";
 import { filterCards, orderCards } from "../redux/actions";
 import { useState } from "react";
+import styled from "styled-components";
 
 
 // DAR ESTILOS A FAVORITES.
+const Select = styled.select`
+border-radius: 5px;
+width: 10em;
+height: 30px;
+
+background-color: white;
+border: none;
+margin: 5px;
+`
 
 
 const Favorites = () => {
@@ -30,25 +39,25 @@ const handleFilter = (event) =>{
 
 
     return(
-        // <CardContainer>
-       <div>
-          <select onChange={handleOrder}>
+        
+    <>
+          <Select onChange={handleOrder}>
               <option value = "A">Ascendente</option>
               <option value = "D">Descendente</option>
-          </select>
+          </Select>
 
-          <select onChange={handleFilter}>
+          <Select onChange={handleFilter}>
               <option value = "Male">Male</option>
               <option value = "Female">Female</option>
               <option value = "Genderless">Genderless</option>
               <option value = "unknow">Unknow</option>
-          </select>
+          </Select>
 
     {/* <Container> */}
         {favorites.map(({ id, name, status, species, gender, origin, image}) => {
                  return (
                 
-                <Card
+                <Card 
                
                 key={id} // Asegúrate de proporcionar una clave única para cada elemento en el map
                 id={id}
@@ -62,11 +71,12 @@ const handleFilter = (event) =>{
                
                
                />
+               
                 );
             })}
         
-
-     </div>
+        </>
+     
     );
 };
 

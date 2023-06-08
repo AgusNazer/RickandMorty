@@ -10,6 +10,9 @@ import { useLocation } from 'react-router-dom';
 import Form from './components/Form/Form';
 import Favorites from './components/favorites/Favorites';
 import { email, password } from './Utils/consts';
+// import Footer from './components/Footer/Footer';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+
 
 
 function App() {
@@ -35,7 +38,14 @@ const URL_BASE = "https://rickandmortyapi.com/api/";
         alert('Error: el ID del personaje debe ser un número entre 1 y 826');
         return;
       }
- 
+
+      // ARREGLAR
+ // Verificar si el personaje ya está en la lista de personajes mostrados, a
+ const characterExists = characters.some(character => character.id === characterID);
+ if (characterExists) {
+   alert('Error: el personaje ya está en la lista');
+   return;
+ }
     
       fetch(`${URL_BASE}character/${characterID}`)
         .then((res) => res.json())
@@ -52,13 +62,9 @@ const URL_BASE = "https://rickandmortyapi.com/api/";
  
 
  };
-// agregar esta fiuncionalidad
-//  const characterRandom = () => {
-//   const randomID = Math.floor(Math.random() * 826) + 1;
-//   searchCharacter(randomID);
-// };
 
- // Obtén la ubicación actual
+
+ // Obténer la ubicación actual
 
 const login =(userData)=>{
   if(userData.email === email && userData.password === password){
@@ -74,16 +80,21 @@ const login =(userData)=>{
          
          {/* {location.pathname !== '/about' %% <Nac /> renderizo condicional, si estoy parado no se renderiza */}
        {pathname !== "/" &&  <Nav onSearch={searchCharacter} />}
+       
        {/* <Nav onSearch={searchCharacter} /> */}
          <Routes>
         <Route path="/"element={<Form login={login} />} /> 
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+         {/* <Route path="/footer" element={<Footer/>} />  */}
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="*" element={<ErrorPage to="https://github.com" />} />
+         
+
        </Routes>
         {/* agregar el button random  */}
-       {/* <button onClick={characterRandom}>Argrear random</button>  */}
+       {/* <button onClick={handleRandom}>Random char</button>  */}
       </div>
    );
 }

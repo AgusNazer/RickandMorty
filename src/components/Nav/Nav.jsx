@@ -50,6 +50,11 @@ export default function Nav({ onSearch }) {
   const handleChange = (event) => {
     setSearchValue(event.target.value);
   };
+ // Character random
+  const handleRandom = () => {
+    const randomID = Math.floor(Math.random() * 826) + 1;
+    onSearch(randomID);
+  };
 
   return (
     <Container>
@@ -60,7 +65,9 @@ export default function Nav({ onSearch }) {
         value={searchValue}
         onChange={handleChange}
       />
-      <Button onClick={handleSearch}>Agregar</Button>
+      <Button onClick={handleSearch}>Add</Button>
+      <Button onClick={handleRandom}>Add Random</Button>
+      
       
       <NavLink to="/about">
         <Button>About</Button>
