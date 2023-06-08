@@ -9,6 +9,8 @@ import Detail from './Views/Detail';
 import { useLocation } from 'react-router-dom';
 import Form from './components/Form/Form';
 import Favorites from './components/favorites/Favorites';
+import { email, password } from './Utils/consts';
+
 
 function App() {
   
@@ -22,8 +24,8 @@ function App() {
   }, [access]);
 
 // CREDENCIALES LOGIN(FAKE)
-const email = "agustin.nazer@hotmail.com"
-const password = "Agus123"
+// const email = "agustin.nazer@hotmail.com"
+// const password = "Agus123"
 
    const searchCharacter = (characterID) => {
 const URL_BASE = "https://rickandmortyapi.com/api/";

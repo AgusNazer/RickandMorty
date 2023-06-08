@@ -1,68 +1,55 @@
 import { useSelector } from "react-redux";
 import Card from "../Card/Card";
-import styled from "styled-components";
+// import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { filterCards, orderCards } from "../redux/actions";
+import { useState } from "react";
+
 
 // DAR ESTILOS A FAVORITES.
-const CardContainer = styled.div`
-height: 35em;
-border: 1px solid white;
-background-color: rgba(241, 241, 241, 0.2);
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`
 
-const Container = styled.div`
-  align-items: center;
-  width: 100%;
-  // max-width: 300px;
-  text-align: center;
-  position: relative;
-
-  @media (max-width: 710px) {
-  
-}
-
-`;
-
-
-
-const Name = styled.h2`
-  color: rgb(31, 97, 141);
-  font-family: roboto;
-`;
-
-const Info = styled.h2`
-  font-size: 20px;
-  font-family: roboto;
-`;
-
-const Image = styled.img`
-// border: 2px solid blue;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-`;
-
-const TextContainer = styled.div`
-// border: 2px solid blue;
-
-  width: 100%;
-  background-color: rgba(211, 209, 209, 0.5);
-  font-family: roboto;
-`;
 
 const Favorites = () => {
-const favorites = useSelector((state) => state.myFavorites)
+
+  
+
+    const dispatch = useDispatch();
+    const favorites = useSelector((state) => state.myFavorites)
+    const [aux, setAux] = useState(false);
+
+const handleOrder = (event) =>{
+     dispatch(orderCards(event.target.value))
+
+     setAux(!aux)
+};
+
+const handleFilter = (event) =>{ 
+    dispatch(filterCards(event.target.value))
+};
+
+
 
     return(
-        <CardContainer>
-    <Container>
+        // <CardContainer>
+       <div>
+          <select onChange={handleOrder}>
+              <option value = "A">Ascendente</option>
+              <option value = "D">Descendente</option>
+          </select>
+
+          <select onChange={handleFilter}>
+              <option value = "Male">Male</option>
+              <option value = "Female">Female</option>
+              <option value = "Genderless">Genderless</option>
+              <option value = "unknow">Unknow</option>
+          </select>
+
+    {/* <Container> */}
         {favorites.map(({ id, name, status, species, gender, origin, image}) => {
-                return (
+                 return (
                 
                 <Card
-        
+               
                 key={id} // Asegúrate de proporcionar una clave única para cada elemento en el map
                 id={id}
                 name={name}
@@ -71,13 +58,15 @@ const favorites = useSelector((state) => state.myFavorites)
                 gender={gender}
                 origin={origin}
                 image={image}
+                
+               
                
                />
                 );
             })}
         
-    </Container>
-        </CardContainer>
+
+     </div>
     );
 };
 
