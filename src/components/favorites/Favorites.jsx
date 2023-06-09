@@ -140,6 +140,11 @@ const CardGridContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 20px;
   margin: 20px; /* Ajusta los márgenes del contenedor del grid */
+
+  @media (max-width: 710px) {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); 
+    justify-items: center;
+  }
 `;
 
 const CardContainer = styled.div`
