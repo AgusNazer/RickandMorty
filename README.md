@@ -2,6 +2,10 @@
 # Rick and Morty App  
 ## by Agustin Nazer
 
+<div>
+<img url="../assets/imgReadme/Capture2Readme">
+</div>
+
 This project is a web application that utilizes the Rick and Morty API to provide various functionalities such as searching for characters, filtering, adding to favorites, removing from favorites, and a login system to access the app.
 
 ## Created and desinged by me! Agustin Nazer ;) 
