@@ -3,7 +3,8 @@
 ## by Agustin Nazer
 
 <div>
-<img url="../assets/imgReadme/Capture2Readme">
+  <img src="public/assets/capture2Readme.png" alt="App Screenshot"><br>
+  <img src="public/assets/mobilePic.png" alt="App Screenshot2">
 </div>
 
 This project is a web application that utilizes the Rick and Morty API to provide various functionalities such as searching for characters, filtering, adding to favorites, removing from favorites, and a login system to access the app.
