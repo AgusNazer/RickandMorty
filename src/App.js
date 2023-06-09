@@ -11,7 +11,7 @@ import Form from './components/Form/Form';
 import Favorites from './components/favorites/Favorites';
 import { email, password } from './Utils/consts';
 // import Footer from './components/Footer/Footer';
-import ErrorPage from './components/ErrorPage/ErrorPage';
+import ErrorPage from './Views/ErrorPage/ErrorPage';
 import { useDispatch } from 'react-redux'; // para cerrar de fav
 
 
@@ -93,7 +93,7 @@ const login =(userData)=>{
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="*" element={<ErrorPage to="https://github.com" />} />
+        <Route path="*" element={<ErrorPage  />} />
          
 
        </Routes>

@@ -39,6 +39,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Detail = () => {
   const { id } = useParams();
@@ -89,12 +90,12 @@ const Info = styled.h2`
   font-family: roboto;
 `;
 
-const Image = styled.img`
-// border: 2px solid blue;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-`;
+// const Image = styled.img`
+// // border: 2px solid blue;
+//   width: 100%;
+//   max-width: 100%;
+//   height: auto;
+// `;
 
 const TextContainer = styled.div`
 // border: 2px solid blue;
@@ -104,11 +105,30 @@ const TextContainer = styled.div`
   font-family: roboto;
 `;
 
+const Button = styled.button`
+
+  background-color: #F0F9EB;
+  margin: 10px;
+  cursor: pointer;
+  border: 2px solid grey;
+  width: 10em;
+  height: 50px;
+  border-radius: 25px;
+  text-decoration: none;
+`;
+
+
+
   return (
     <CardContainer>
       <Container>
-        <h1>Esta sería la ficha del personaje de ID {id}</h1>
+        <h1>Probando personaje con ID {id}</h1>
         <TextContainer>
+          <Button> 
+            <Link to= "/home">
+            Back to home
+            </Link> 
+            </Button>
         <Name>Name: {character.name}</Name>
         <Info>Status: {character.status}</Info>
         <Info>Specie: {character.species}</Info>

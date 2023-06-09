@@ -129,11 +129,11 @@ const Select = styled.select`
   margin: 5px;
 `;
 
-const Image = styled.img`
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-`;
+// const Image = styled.img`
+//   width: 100%;
+//   max-width: 100%;
+//   height: auto;
+// `;
 
 const CardGridContainer = styled.div`
   display: grid;
