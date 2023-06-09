@@ -12,6 +12,8 @@ import Favorites from './components/favorites/Favorites';
 import { email, password } from './Utils/consts';
 // import Footer from './components/Footer/Footer';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import { useDispatch } from 'react-redux'; // para cerrar de fav
+
 
 
 
@@ -21,6 +23,8 @@ function App() {
   const {pathname} = useLocation();
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch(); // para borra de favoritos
 
   useEffect(() => {
     !access && navigate("/");

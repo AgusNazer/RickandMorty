@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { addFavorite, removeFavorite } from "../redux/actions";
 import { useState, useEffect } from "react";
 
-
-export const CardContainer = styled.div`
+const CardContainer = styled.div`
 height: 35em;
 border: 1px solid white;
 background-color: rgba(241, 241, 241, 0.2);
@@ -124,6 +123,7 @@ useEffect(() => {
       <button onClick={handleFavorite}>🤍</button>
    )
 }
+
       <TextContainer>
 
        <Link to={`/detail/${id}`}>
@@ -134,7 +134,10 @@ useEffect(() => {
         <Info>Species: {species}</Info>
         <Info>Gender: {gender}</Info>
         <Info>Origin: {origin.name}</Info>
-        <Button onClick={handleCardClose} >X</Button>
+        <Button 
+       
+        onClick={handleCardClose} >X</Button>
+
       </TextContainer>
     </Container>
     </CardContainer>
