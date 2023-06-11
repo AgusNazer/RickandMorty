@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addFavorite, removeFavorite } from "../redux/actions";
 import { useState, useEffect } from "react";
 
+
 const CardContainer = styled.div`
 height: 35em;
 border: 1px solid white;
@@ -72,7 +73,8 @@ export const Button = styled.button`
 `;
 
 export function Card({ id, name, status, species, gender, origin, image, onClose, addFavorite, removeFavorite, myFavorites, }) {
-  const handleCardClose = () => {
+  
+   const handleCardClose = () => {
     onClose(id);
   };
  const [isFav, setIsFav] = useState(false);
