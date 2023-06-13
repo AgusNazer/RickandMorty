@@ -47,7 +47,7 @@ console.log(id);
   const [character, setCharacter] = useState({});
 
   useEffect(() => {
-    const URL_BASE = "https://rickandmortyapi.com/api";
+    const URL_BASE = "http://localhost:3001/rickandmorty/character/${id}";
 
     fetch(`${URL_BASE}/character/${id}`)
       .then((response) => response.json())

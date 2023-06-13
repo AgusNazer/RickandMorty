@@ -35,7 +35,8 @@ function App() {
 // const password = "Agus123"
 
    const searchCharacter = (characterID) => {
-const URL_BASE = "https://rickandmortyapi.com/api/";
+// const URL_BASE = "https://rickandmortyapi.com/api/";
+const URL_BASE = "http://localhost:3001/rickandmorty/character/${id}";
 // const KEY = 'rick and morty no tiene API KEY';
 
       if (isNaN(characterID) || characterID > 826 || characterID <= 0) {
@@ -53,9 +54,22 @@ const URL_BASE = "https://rickandmortyapi.com/api/";
     
       fetch(`${URL_BASE}character/${characterID}`)
         .then((res) => res.json())
-        .then((data) => setCharacters([...characters, data]));
-    };
+        .then((data) => 
+        
+    //       setCharacters([...characters, data]));
+          
+    // };
+    {if (data.name) {
+      setCharacters((searchCharacter) => [...searchCharacter, data])
+    }
+  })
+  .catch((error) =>{
+    console.log('hubo un error');
+  })
+}
 
+
+    
 
    const onClose = (id) => {
    const parsedID = parseInt(id);
