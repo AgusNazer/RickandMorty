@@ -1,0 +1,5 @@
+rutas
+GET getCharById: esta ruta obtendrá personajes de la API mediante su id.
+GET login: esta ruta es la que le dará o no acceso al usuario para usar la aplicación.
+POST postFav: esta ruta guardará en nuestro servidor a nuestros personajes favoritos.
+DELETE deleteFav: esta ruta eliminará a un personaje de nuestros favoritos.
