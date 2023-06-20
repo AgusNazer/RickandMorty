@@ -1,4 +1,5 @@
-import { ADD_FAV, REMOVE_FAV } from "./actions";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./actions";
+import axios from 'axios';
 
 const initialState = {
     myFavorites: [],
@@ -7,25 +8,40 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type){
-        case "ADD_FAV":
-        return{
-             ...state,
-              myFavorites: [...state.allCharactersFilter, action.payload],
-              allCharactersFilter: [...state.allCharactersFilter, action.payload]
-        };
+        case ADD_FAV:
+        // return{
+        //      ...state,
+        //       myFavorites: [...state.allCharactersFilter, action.payload],
+        //       allCharactersFilter: [...state.allCharactersFilter, action.payload]
+        // };
+
+        return { ...state, 
+            myFavorites: action.payload, 
+            allCharactersFilter: action.payload };
         
-        case "REMOVE_FAV":
-        return { ...state, myFavorites: state.myFavorites.filter(char => char.id !== action.payload
-            ),
-        };
-        case "FILTER":
+
+
+        case REMOVE_FAV:
+        // return { ...state, myFavorites: state.myFavorites.filter(char => char.id !== action.payload
+        //     ),
+        // };
+        return {
+            ...state,
+            myFavorites:  action.payload
+          };
+          
+
+        
+        case FILTER:
             const allCharactersFiltered = state.allCharactersFilter.filter(
             (char)=> char.gender === action.payload );
             return {
                 ...state, 
                 myFavorites: allCharactersFiltered
             };
-           case "ORDER":
+
+
+           case ORDER:
             const allCharactersFilterCopy = [...state.allCharactersFilter]; // guardo las copias de los favoritos
             return {
                 ...state,

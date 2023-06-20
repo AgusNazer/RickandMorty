@@ -9,10 +9,11 @@ import Detail from './Views/Detail';
 import { useLocation } from 'react-router-dom';
 import Form from './components/Form/Form';
 import Favorites from './components/favorites/Favorites';
-import { email, password } from './Utils/consts';
+// import { email, password } from './Utils/consts';
 // import Footer from './components/Footer/Footer';
 import ErrorPage from './Views/ErrorPage/ErrorPage';
 import { useDispatch } from 'react-redux'; // para cerrar de fav
+import axios from 'axios';
 
 
 
@@ -23,6 +24,7 @@ function App() {
   const {pathname} = useLocation();
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
+
 
   const dispatch = useDispatch(); // para borra de favoritos
 
@@ -35,9 +37,9 @@ function App() {
 // const password = "Agus123"
 
    const searchCharacter = (characterID) => {
-// const URL_BASE = "https://rickandmortyapi.com/api/";
-const URL_BASE = "http://localhost:3001/rickandmorty/character/${id}";
-// const KEY = 'rick and morty no tiene API KEY';
+
+const URL_BASE = `http://localhost:3001/rickandmorty/character/${characterID}`;
+
 
       if (isNaN(characterID) || characterID > 826 || characterID <= 0) {
         alert('Error: el ID del personaje debe ser un número entre 1 y 826');
@@ -52,46 +54,46 @@ const URL_BASE = "http://localhost:3001/rickandmorty/character/${id}";
    return;
  }
     
-      fetch(`${URL_BASE}character/${characterID}`)
-        .then((res) => res.json())
-        .then((data) => 
+//       fetch(`${URL_BASE}${characterID}`)
+//         .then((res) => res.json())
+//         .then((data) => 
         
-    //       setCharacters([...characters, data]));
-          
-    // };
-    {if (data.name) {
-      setCharacters((searchCharacter) => [...searchCharacter, data])
+   
+//     {if (data.name) {
+//       setCharacters((searchCharacter) => [...searchCharacter, data])
+//     }
+//   })
+//       .catch((error) =>{
+//       console.log('hubo un error', error);
+//     })
+
+axios(`${URL_BASE}`)
+  .then(({data}) => {
+    if(data.name) {
+        setCharacters((searchCharacter) => [...searchCharacter, data])
+    }else{
+        window.alert( 'No hay personajes con este ID!')
     }
   })
-  .catch((error) =>{
-    console.log('hubo un error');
-  })
+
 }
-
-
-    
-
    const onClose = (id) => {
    const parsedID = parseInt(id);
    const updatedCharacters = characters.filter((character) => character.id !== parsedID);
    setCharacters(updatedCharacters);
+};
 
-
- 
-
- };
-
-
- // Obténer la ubicación actual
-
-const login =(userData)=>{
-  if(userData.email === email && userData.password === password){
-    setAccess(true);
-    navigate("/home");
-  }else{
-    alert("Credenciales incorrectas")
-  }
+const login = (userData) => {
+  const { email, password } = userData;
+  const URL = 'http://localhost:3001/rickandmorty/login/';
+  axios(URL + `?email=${email}&password=${password}`)
+  .then(({ data }) => {
+     const { access } = data;
+     setAccess(access);
+     access && navigate('/home');
+  });
 }
+
    return (
       <div className= "App">
         
