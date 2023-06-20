@@ -3,7 +3,7 @@ export const ADD_FAV = "ADD_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
 export const FILTER = "FILTER";
 export const ORDER = "ORDER";
-
+// export const SHOW_ALL_FAV = "SHOW_ALL_FAV"
 
 
 
@@ -66,3 +66,10 @@ export const addFavorite = (character) => {
       payload: orden
     }
   };
+
+  // AGREGAR FUNCIONALIDAD DE MOSTRAR TODOS
+//   export const showAllFavs = (noFilter) => {
+//    return { 
+//       type: SHOW_ALL_FAV, 
+//       payload: noFilter, };
+// };
