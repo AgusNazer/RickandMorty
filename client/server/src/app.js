@@ -4,7 +4,7 @@ const router = require('./routes/index');
 const morgan = require('morgan')
 
 
-// Middleware express.json()
+//Middleware express.json()
 server.use(express.json());
 server.use(morgan('dev'));
 

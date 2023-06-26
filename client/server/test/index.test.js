@@ -1,4 +1,3 @@
-const { toContainElement } = require('@testing-library/jest-dom/matchers');
 const app = require('../src/app');
 const session = require('supertest');
 const request = session(app);
