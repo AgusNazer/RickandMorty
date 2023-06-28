@@ -25,8 +25,35 @@
 // homwork test
 // const express = require('express');
 // const server = express();
-const server = require('./app')
+const server = require('./app');
 const PORT = 3001;  
+const { conn } = require('./DB_connection');
+
+
+(async () => {
+   try {
+     await conn.sync({ force: false });
+     console.log('Models synchronized with the database.');
+ 
+     // Inicia tu servidor aquí
+     server.listen(PORT, () => {
+       console.log('Server raised in port: ' + PORT);
+     });
+   } catch (error) {
+     console.error('Error occurred:', error);
+   }
+ })();
+
+// conn.sync({ force: true }).then(() => {
+//    // Start your server here
+//    server.listen(PORT, () => {
+//       console.log('Server raised in port: ' + PORT);
+//    });
+//  })
+//  .catch((error) => {
+//    console.error('Error occurred during database synchronization:', error);
+//  });
+
 
 // homework de test
 // // Middleware express.json()
@@ -52,9 +79,9 @@ const PORT = 3001;
 // // Middleware para agregar "/rickandmorty" antes de cada ruta
 // server.use('/rickandmorty', router);
 
-server.listen(PORT, () => {
-   console.log('Server raised in port: ' + PORT);
-});
+// server.listen(PORT, () => {
+//    console.log('Server raised in port: ' + PORT);
+// });
 
 
 
