@@ -21,4 +21,8 @@ body{
    /* background-image: url("../public/assets/fondoApp.jpeg"); */
 }
 
-
+.lineaHr{
+   color: azure;
+   border: solid 1px rgb(239, 239, 239);
+   width: 70%;
+}

@@ -14,6 +14,7 @@ import Favorites from './components/favorites/Favorites';
 import ErrorPage from './Views/ErrorPage/ErrorPage';
 import { useDispatch } from 'react-redux'; // para cerrar de fav
 import axios from 'axios';
+import Footer from './components/Footer/Footer'
 
 
 const URL = "http://localhost:3001/rickandmorty/login/";
@@ -115,8 +116,7 @@ function App() {
          
 
        </Routes>
-        {/* agregar el button random  */}
-       {/* <button onClick={handleRandom}>Random char</button>  */}
+       <Footer/>
       </div>
    );
 }
