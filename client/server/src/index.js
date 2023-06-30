@@ -32,7 +32,7 @@ const { conn } = require('./DB_connection');
 
 (async () => {
    try {
-     await conn.sync({ force: false });
+     await conn.sync({ force: true });
      console.log('Models synchronized with the database.');
  
      // Inicia tu servidor aquí

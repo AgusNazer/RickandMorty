@@ -25,7 +25,8 @@ export const addFavorite = (character) => {
         });
 
       } catch (error) {
-         
+        console.error('Error al agregar a favoritos:', error);
+        throw error; //
       }
       
       

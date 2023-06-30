@@ -1,4 +1,4 @@
-// ! CREDENTIALS FAKE LOGIN:
+// // ! CREDENTIALS FAKE LOGIN:
 
-export const email = "agustin.nazer@hotmail.com"
-export const password = "Agus123"
+// export const email = "agustin.nazer@hotmail.com"
+// export const password = "Agus123"
