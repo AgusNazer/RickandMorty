@@ -5,7 +5,7 @@ function ErrorPage() {
   return (
     <div>
       <img src={errorIMG} alt="error404" />
-      console.log(error404);
+      {/* console.log(); */}
     </div>
   );
 }

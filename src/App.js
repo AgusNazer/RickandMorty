@@ -24,7 +24,7 @@ function App() {
   
   const [characters, setCharacters] = useState ([]);
   const {pathname} = useLocation();
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(true);
   const navigate = useNavigate();
 
 
@@ -37,6 +37,8 @@ function App() {
 // CREDENCIALES LOGIN(FAKE)
 // const email = "agustin.nazer@hotmail.com"
 // const password = "Agus123"
+console.log('Valor de access al inicio:', access);
+
 
    const searchCharacter = async (characterID) => {
 
@@ -81,21 +83,52 @@ function App() {
      setCharacters(updatedCharacters);
    };
 
-   const login = async  (userData) => {
+   // Login con database backend
+//    const login = async  (userData) => {
+//     try {
+//         const { email, password } = userData;
+//         const { data } = await axios(URL + `?email=${email}&password=${password}`)
+        
+        
+        
+//           const { access } = data;
+//         //   console.log('Access value:', access);
+//           setAccess(access);
+//           access && navigate("/home");
+
+        
+//        } catch (error) {
+//         console.log(error.message);
+//        }
+//     };
+
+// login falso frontend validation
+const login = async (userData) => {
     try {
-        const { email, password } = userData;
-        const { data } = await axios(URL + `?email=${email}&password=${password}`)
-        
-        
-          const { access } = data;
-          setAccess(access);
-          access && navigate("/home");
-   
-        
-       } catch (error) {
-        console.log(error.message);
-       }
-    };
+      const { email, password } = userData;
+  
+      // Validación de email: Verificar que el email contenga el caracter '@' y el '.com' o al menos dos letras después del punto.
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        alert("Por favor, ingresa un email válido.");
+        return;
+      }
+  
+      // Validación de password: Verificar que el password contenga al menos dos letras y una mayúscula.
+      const passwordPattern = /^(?=.*[a-zA-Z].*[a-zA-Z])(?=.*[A-Z])/;
+      if (!passwordPattern.test(password)) {
+        alert("Por favor, ingresa una contraseña con al menos dos letras y una mayúscula.");
+        return;
+      }
+  
+      // Simulamos una autenticación exitosa estableciendo siempre el estado "access" en true
+      setAccess(true);
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
 
    return (
       <div className= "App">
